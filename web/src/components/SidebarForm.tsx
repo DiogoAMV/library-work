@@ -18,7 +18,7 @@ interface SidebarFormProps {
 }
 
 const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
-  const { createUser } = useUsers();
+  const { createUser, editUser } = useUsers();
 
   const initialValues: User = {
     user_id: user?.user_id ?? null,
@@ -32,7 +32,11 @@ const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
-      await createUser(values);
+      if (isEditing) {
+        editUser(values);
+      } else {
+        await createUser(values);
+      }
       resetForm();
     },
   });

@@ -18,9 +18,9 @@ const useUsers = () => {
     }
   };
 
-  const editUser = async ({ body, id }: { body: User; id: string }) => {
+  const editUser = async (body: User) => {
     try {
-      const response = await api.put(`/users/${id}`, body);
+      const response = await api.put(`/users/${body.user_id}`, body);
       mutate("/users");
       console.log(response);
     } catch (error) {

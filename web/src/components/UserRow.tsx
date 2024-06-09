@@ -5,6 +5,8 @@ import { TbPencil } from "react-icons/tb";
 import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import ConfirmationModal from "./AlertDialog";
 import useUsers from "@/hooks/useUsers";
+import { Sheet, SheetTrigger } from "./ui/sheet";
+import SidebarForm from "./SidebarForm";
 
 interface UserRowProps {
   user: User;
@@ -33,9 +35,14 @@ const UserRow = ({ user }: UserRowProps): JSX.Element => {
           </AlertDialogTrigger>
         </td>
         <td className=" text-violet-500">
-          <button className="px-6 py-4 hover:brightness-50 transition-all border-none">
-            <TbPencil />
-          </button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="px-6 py-4 hover:brightness-50 transition-all border-none">
+                <TbPencil />
+              </button>
+            </SheetTrigger>
+            <SidebarForm isEditing user={user} />
+          </Sheet>
         </td>
       </tr>
       <ConfirmationModal
