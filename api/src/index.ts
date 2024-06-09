@@ -1,8 +1,10 @@
 import "module-alias/register";
+import * as cors from "cors";
 import * as express from "express";
 import UserRoutes from "./routes/user.routes";
 import { AppDataSource } from "@app/datasource.config";
 const app = express();
+app.use(cors());
 const port = 3000;
 
 AppDataSource.initialize()

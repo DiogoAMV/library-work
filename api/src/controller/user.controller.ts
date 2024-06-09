@@ -9,7 +9,7 @@ export class UserController {
   static getAll = async (req: Request, res: Response) => {
     const userRepository = AppDataSource.getRepository(Users);
     const users = await userRepository.find();
-    res.json(users);
+    return res.json(users);
   };
 
   static create = async (req: Request, res: Response) => {
@@ -23,7 +23,7 @@ export class UserController {
       password_hash: hashedPassword,
     });
     await userRepository.save(user);
-    res.json(200);
+    return res.json(200);
   };
 
   static update = async (req: Request, res: Response) => {
@@ -36,9 +36,9 @@ export class UserController {
     if (user) {
       userRepository.merge(user, req.body);
       const result = await userRepository.save(user);
-      res.json(result);
+      return res.json(result);
     } else {
-      res.status(404).send("User not found");
+      return res.status(404).send("User not found");
     }
   };
 
@@ -46,9 +46,9 @@ export class UserController {
     const userRepository = AppDataSource.getRepository(Users);
     const result = await userRepository.delete(req.params.id);
     if (result.affected === 0) {
-      res.status(404).send("User not found");
+      return res.status(404).send("User not found");
     }
 
-    res.status(204);
+    return res.sendStatus(204);
   };
 }
