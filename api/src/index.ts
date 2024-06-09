@@ -1,6 +1,7 @@
+import "module-alias/register";
 import * as express from "express";
-import { AppDataSource } from "./data-source";
-import UserRoutes from "./routes/UserRoutes";
+import UserRoutes from "./routes/user.routes";
+import { AppDataSource } from "@app/datasource.config";
 const app = express();
 const port = 3000;
 

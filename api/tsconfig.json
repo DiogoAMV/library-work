@@ -9,6 +9,12 @@
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "@model/*": ["./src/model/*"],
+      "@controller/*": ["./src/controller/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@app/*": ["./src/*"]
+    }
   }
 }

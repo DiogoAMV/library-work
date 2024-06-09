@@ -9,7 +9,7 @@ export const AppDataSource = new DataSource({
   database: "master",
   synchronize: false,
   logging: false,
-  entities: ["src/entity/**/*.ts"],
+  entities: ["src/model/**/*.ts"],
   migrations: ["src/migration/**/*.ts"],
   subscribers: ["src/subscriber/**/*.ts"],
   options: {

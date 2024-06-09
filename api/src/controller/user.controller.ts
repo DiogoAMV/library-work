@@ -1,7 +1,6 @@
-import { getRepository } from "typeorm";
+import { AppDataSource } from "@app/datasource.config";
+import { Users } from "@model/user.model";
 import { Request, Response } from "express";
-import { Users } from "../entity/User";
-import { AppDataSource } from "../data-source";
 
 export class UserController {
   static getAll = async (req: Request, res: Response) => {
