@@ -46,7 +46,7 @@ const UserRow = ({ user }: UserRowProps): JSX.Element => {
         </td>
       </tr>
       <ConfirmationModal
-        action={() => deleteUser(user.user_id)}
+        action={() => deleteUser(user.user_id!)}
         title="Você tem certeza?"
         description="A ação a seguir não poderá ser desfeita, caso decida prosseguir, tenha em mente que o usuário será deletado para sempre da base de dados! Deseja continuar?"
       />

@@ -18,9 +18,13 @@ export class UserController {
       req.body.password_hash,
       saltRounds
     );
+
+    const createdAt = new Date();
+
     const user = userRepository.create({
       ...req.body,
       password_hash: hashedPassword,
+      created_at: createdAt,
     });
     await userRepository.save(user);
     return res.json(200);
