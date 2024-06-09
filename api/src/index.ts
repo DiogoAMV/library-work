@@ -7,6 +7,8 @@ const port = 3000;
 
 AppDataSource.initialize()
   .then(async () => {
+    app.use(express.json());
+
     app.get("/", (req, res) => {
       res.send("Hello World!");
     });

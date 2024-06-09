@@ -8,7 +8,7 @@ export const AppDataSource = new DataSource({
   password: "MyStrongPass123",
   database: "master",
   synchronize: false,
-  logging: false,
+  logging: ["query", "error"],
   entities: ["src/model/**/*.ts"],
   migrations: ["src/migration/**/*.ts"],
   subscribers: ["src/subscriber/**/*.ts"],
