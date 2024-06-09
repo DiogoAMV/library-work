@@ -24,6 +24,10 @@ const Input = ({ label, Icon, error, ...props }: InputProps): JSX.Element => {
         )}
 
         <input
+          onChange={props.onChange}
+          value={props.value}
+          defaultValue={props.defaultValue}
+          name={props.name}
           type={props.type}
           id={props.id}
           className={`bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:border-violet-500 focus:ring-0 outline-none block w-full ps-10 p-2.5 transition-all duration-300 ${

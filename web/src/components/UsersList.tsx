@@ -24,6 +24,8 @@ const UsersList = (): JSX.Element => {
             <th scope="col" className="px-6 py-3">
               Created At
             </th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

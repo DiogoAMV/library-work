@@ -1,30 +1,23 @@
-import { useCallback, useState } from "react";
 import SidebarForm from "./components/SidebarForm";
 import UsersList from "./components/UsersList";
+import GenericButton from "./components/GenericButton";
+import { FiUserPlus } from "react-icons/fi";
+import { Sheet, SheetTrigger } from "./components/ui/sheet";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleToggleSidebarForm = useCallback(() => {
-    setIsOpen(!isOpen);
-  }, [isOpen]);
-
   return (
     <main className="font-poppins">
-      {isOpen && (
-        <SidebarForm
-          handleToggle={handleToggleSidebarForm}
-          isEditing
-          isOpen={isOpen}
-        />
-      )}
       <div className="flex flex-col py-32 items-center justify-center">
-        <button
-          className="bg-violet-500 text-white px-4 py-2 rounded-md"
-          onClick={handleToggleSidebarForm}
-        >
-          Abrir
-        </button>
+        <Sheet>
+          <SheetTrigger asChild>
+            <GenericButton
+              Icon={FiUserPlus}
+              className="max-w-fit my-4"
+              text="Criar usuário"
+            />
+          </SheetTrigger>
+          <SidebarForm />
+        </Sheet>
         <UsersList />
       </div>
     </main>

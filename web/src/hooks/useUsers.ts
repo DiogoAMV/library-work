@@ -8,7 +8,7 @@ const useUsers = () => {
   const { data, error, isLoading } = useSWR<User[]>("/users", fetcher);
   const { mutate } = useSWRConfig();
 
-  const createUser = async ({ user }: { user: User }) => {
+  const createUser = async (user: User) => {
     try {
       const response = await api.post("/users", user);
       mutate("/users");
