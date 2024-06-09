@@ -25,14 +25,22 @@ const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
     username: user?.username ?? "",
     email: user?.email ?? "",
     password_hash: user?.password_hash ?? "",
-    created_at: user?.created_at ?? undefined,
+    created_at: user?.created_at ?? "",
   };
 
-  const { handleSubmit, values, errors, handleChange, resetForm } = useFormik({
+  const {
+    handleSubmit,
+    values,
+    errors,
+    handleChange,
+    resetForm,
+    setFieldValue,
+  } = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
       if (isEditing) {
+        setFieldValue("created_at", new Date(values.created_at).toISOString());
         editUser(values);
       } else {
         await createUser(values);
@@ -102,7 +110,7 @@ const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
               name="created_at"
               label="Created At"
               placeholder="dd/mm/yyyy"
-              type="date"
+              type="datetime-local"
               Icon={LuCalendar}
               error={errors.created_at}
             />

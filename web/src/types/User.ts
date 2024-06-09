@@ -3,5 +3,5 @@ export interface User {
   username: string;
   email: string;
   password_hash: string;
-  created_at?: string | undefined;
+  created_at: string;
 }
