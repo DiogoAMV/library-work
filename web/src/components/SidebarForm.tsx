@@ -10,6 +10,7 @@ import { User } from "@/types/User";
 import { useFormik } from "formik";
 import { validationSchema } from "@/schemes/users.scheme";
 import useUsers from "@/hooks/useUsers";
+import moment from "moment";
 
 interface SidebarFormProps {
   user?: User;
@@ -25,7 +26,7 @@ const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
     username: user?.username ?? "",
     email: user?.email ?? "",
     password_hash: user?.password_hash ?? "",
-    created_at: user?.created_at ?? "",
+    created_at: moment.utc(user?.created_at).format("YYYY-MM-DD") ?? "",
   };
 
   const {
@@ -110,7 +111,8 @@ const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
               name="created_at"
               label="Created At"
               placeholder="dd/mm/yyyy"
-              type="datetime-local"
+              type="date"
+              className="date-input"
               Icon={LuCalendar}
               error={errors.created_at}
             />
