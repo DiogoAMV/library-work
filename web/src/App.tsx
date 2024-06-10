@@ -3,6 +3,7 @@ import UsersList from "./components/UsersList";
 import GenericButton from "./components/GenericButton";
 import { FiUserPlus } from "react-icons/fi";
 import { Sheet, SheetTrigger } from "./components/ui/sheet";
+import { Toaster } from "sonner";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         </Sheet>
         <UsersList />
       </div>
+      <Toaster />
     </main>
   );
 }
