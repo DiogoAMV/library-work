@@ -16,10 +16,11 @@ const GenericButton = ({
   return (
     <button
       {...props}
-      className={`w-full  bg-violet-500 text-white px-4 py-2 h-[42px] overflow-hidden rounded-md  duration-300 border-[1px] ${
-        !props.disabled && "hover:border-violet-500 hover:bg-transparent"
+      className={`w-full   text-white px-4 py-2 h-[42px] overflow-hidden rounded-md  duration-300 border-[1px] ${
+        !props.disabled &&
+        "hover:border-violet-500 hover:bg-transparent bg-violet-500"
       } transition-all group ${
-        props.disabled && "bg-violet-300 cursor-not-allowed"
+        props.disabled && " cursor-not-allowed bg-violet-300"
       } ${className}`}
       type="submit"
     >

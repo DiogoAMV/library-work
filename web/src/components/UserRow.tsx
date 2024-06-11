@@ -3,7 +3,7 @@ import moment from "moment";
 import { LuTrash } from "react-icons/lu";
 import { TbPencil } from "react-icons/tb";
 import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import ConfirmationModal from "./AlertDialog";
+import ConfirmationModal from "./ConfirmationModal";
 import useUsers from "@/hooks/useUsers";
 import { Sheet, SheetTrigger } from "./ui/sheet";
 import SidebarForm from "./SidebarForm";
