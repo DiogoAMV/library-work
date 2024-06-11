@@ -1,13 +1,22 @@
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, MouseEventHandler } from "react";
 import { IconType } from "react-icons";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
+  showPassword?: boolean;
   Icon?: IconType;
 }
 
-const Input = ({ label, Icon, error, ...props }: InputProps): JSX.Element => {
+const Input = ({
+  label,
+  Icon,
+  error,
+  showPassword,
+  onClick,
+  ...props
+}: InputProps): JSX.Element => {
   return (
     <div className="flex flex-col gap-1">
       <label
@@ -36,6 +45,14 @@ const Input = ({ label, Icon, error, ...props }: InputProps): JSX.Element => {
           placeholder={props.placeholder}
           disabled={props.disabled}
         />
+        {props.name === "password_hash" && (
+          <button
+            onClick={onClick as MouseEventHandler<HTMLButtonElement>}
+            className="absolute inset-y-0 end-5 flex items-center ps-3.5 hover:text-violet-500 transition-all"
+          >
+            {showPassword ? <FiEyeOff /> : <FiEye />}
+          </button>
+        )}
       </div>
       {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>

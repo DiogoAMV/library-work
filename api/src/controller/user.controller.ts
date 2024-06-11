@@ -38,9 +38,23 @@ export class UserController {
       },
     });
     if (user) {
-      userRepository.merge(user, req.body);
-      const result = await userRepository.save(user);
-      return res.json(result);
+      if (req.body.password_hash) {
+        const hashedPassword = await bcrypt.hash(
+          req.body.password_hash,
+          saltRounds
+        );
+
+        userRepository.merge(user, {
+          ...req.body,
+          password_hash: hashedPassword,
+        });
+        const result = await userRepository.save(user);
+        return res.json(result);
+      } else {
+        userRepository.merge(user, req.body);
+        const result = await userRepository.save(user);
+        return res.json(result);
+      }
     } else {
       return res.status(404).send("User not found");
     }

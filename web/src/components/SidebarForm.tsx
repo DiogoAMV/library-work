@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 import { validationSchema } from "@/schemes/users.scheme";
 import useUsers from "@/hooks/useUsers";
 import moment from "moment";
+import { useCallback, useState } from "react";
 
 interface SidebarFormProps {
   user?: User;
@@ -19,6 +20,7 @@ interface SidebarFormProps {
 }
 
 const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
+  const [showPassword, setShowPassword] = useState(false);
   const { createUser, editUser } = useUsers();
 
   const initialValues: User = {
@@ -49,6 +51,10 @@ const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
       resetForm();
     },
   });
+
+  const toggleShowPassword = useCallback(() => {
+    setShowPassword(!showPassword);
+  }, [showPassword]);
 
   return (
     <SheetContent className="flex flex-col items-center bg-zinc-100 p-8 transition-all">
@@ -99,9 +105,11 @@ const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
             name="password_hash"
             label="Password"
             placeholder="********"
-            type="password"
+            type={showPassword ? "text" : "password"}
             Icon={MdOutlinePassword}
             error={errors.password_hash}
+            showPassword={showPassword}
+            onClick={toggleShowPassword}
           />
 
           {isEditing && (
