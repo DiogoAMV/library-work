@@ -46,7 +46,9 @@ const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
         setFieldValue("created_at", new Date(values.created_at).toISOString());
         editUser(values);
       } else {
-        await createUser(values);
+        if (isUserFormFilled) {
+          await createUser(values);
+        }
       }
       resetForm();
     },
@@ -55,6 +57,11 @@ const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
   const toggleShowPassword = useCallback(() => {
     setShowPassword(!showPassword);
   }, [showPassword]);
+
+  const isUserFormFilled =
+    Boolean(values.email) &&
+    Boolean(values.password_hash) &&
+    Boolean(values.username);
 
   return (
     <SheetContent className="flex flex-col items-center bg-zinc-100 p-8 transition-all">
@@ -126,10 +133,10 @@ const SidebarForm = ({ isEditing, user }: SidebarFormProps): JSX.Element => {
             />
           )}
         </div>
-        <SheetClose>
+        <SheetClose disabled={!isUserFormFilled}>
           <GenericButton
             onClick={() => handleSubmit()}
-            disabled={Object.keys(errors).length > 0}
+            disabled={!isUserFormFilled}
             className="w-full"
             text={isEditing ? "Editar usuário" : "Criar usuário"}
             Icon={FaCheck}
